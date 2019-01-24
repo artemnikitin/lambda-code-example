@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go-v2/aws/endpoints"
 	"github.com/aws/aws-sdk-go-v2/aws/external"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
+	"github.com/aws/aws-sdk-go-v2/service/dynamodb/dynamodbiface"
 )
 
 const (
@@ -18,7 +19,7 @@ const (
 
 // DynamoDBClient used to encapsulate DynamoDB specifics
 type DynamoDBClient struct {
-	Client *dynamodb.DynamoDB
+	client dynamodbiface.DynamoDBAPI
 }
 
 // GetDynamoDBClient is a constructor for DynamoDBClient
@@ -29,12 +30,12 @@ func GetDynamoDBClient() (*DynamoDBClient, error) {
 		return nil, err
 	}
 	cfg.Region = endpoints.EuWest1RegionID
-	return &DynamoDBClient{Client: dynamodb.New(cfg)}, nil
+	return &DynamoDBClient{client: dynamodb.New(cfg)}, nil
 }
 
 // AddURL adds full and generated short URL to DynamoDB
 func (v *DynamoDBClient) AddURL(short, full string) error {
-	req := v.Client.PutItemRequest(&dynamodb.PutItemInput{
+	req := v.client.PutItemRequest(&dynamodb.PutItemInput{
 		Item: map[string]dynamodb.AttributeValue{
 			"shortUrl": {S: aws.String(short)},
 			"fullUrl":  {S: aws.String(full)},
@@ -52,7 +53,7 @@ func (v *DynamoDBClient) AddURL(short, full string) error {
 
 // GetURL returns full URL by short URL
 func (v *DynamoDBClient) GetURL(short string) (string, error) {
-	req := v.Client.GetItemRequest(&dynamodb.GetItemInput{
+	req := v.client.GetItemRequest(&dynamodb.GetItemInput{
 		Key: map[string]dynamodb.AttributeValue{"shortUrl": {
 			S: aws.String(short),
 		}},

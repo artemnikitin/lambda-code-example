@@ -4,6 +4,8 @@ import (
 	"log"
 	"strings"
 
+	"github.com/aws/aws-sdk-go-v2/service/ec2/ec2iface"
+
 	"github.com/aws/aws-sdk-go-v2/aws/endpoints"
 	"github.com/aws/aws-sdk-go-v2/aws/external"
 	"github.com/aws/aws-sdk-go-v2/service/ec2"
@@ -11,7 +13,7 @@ import (
 
 // EC2Client used to encapsulate EC2 specifics
 type EC2Client struct {
-	client *ec2.EC2
+	client ec2iface.EC2API
 }
 
 // GetEC2Client is a constructor for EC2Client
