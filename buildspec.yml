@@ -1,0 +1,11 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - echo Build started on `date`
+      - make
+      - make build
+  post_build:
+    commands:
+      - echo Build finished on `date`
