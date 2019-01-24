@@ -1,6 +1,10 @@
-.PHONY: all lint test build clean
+.PHONY: all lint test build clean show-coverage deps
 
-all: clean lint test
+all: clean deps lint test
+
+deps:
+		@echo "Downloading dependencies..."
+		@go mod download
 
 lint:
 		@echo "Run checks..."
@@ -9,11 +13,14 @@ lint:
 
 test:
 		@echo "Run tests..."
-		@go test -v -race $$(go list ./... | grep -v /vendor/ | grep -v /cmd)
+		@go test -v -race $$(go list ./... | grep -v /vendor/ | grep -v /cmd) -coverprofile=coverage.out
+
+show-coverage:
+		@go tool cover -html=coverage.out
 
 build: clean
 		@mkdir -p build/
-		./build.sh
+		@./build.sh
 		@find build -type f ! -name '*.zip' -delete
 
 clean:
