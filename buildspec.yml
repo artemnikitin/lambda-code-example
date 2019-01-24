@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-    GO111MODULE=: "on"
+    GO111MODULE: "on"
 
 phases:
   pre_build:
