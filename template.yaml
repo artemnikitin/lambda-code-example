@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Example of using AWS SAM CLI for Lambda
+
+Resources:
+  DynamoDBEvent:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: build/
+      Handler: lambda_event
+      Runtime: go1.x
+      Tracing: Active
+      Description: An example of app which triggered by Amazon DynamoDB update
+      MemorySize: 128
+      Timeout: 3
+      Policies:
+        - AWSConfigRulesExecutionRole
+      Events:
+        DynamoDB1:
+          Type: DynamoDB
+          Properties:
+            Stream:
+              'Fn::GetAtt':
+                - Table1
+                - StreamArn
+            StartingPosition: TRIM_HORIZON
+            BatchSize: 100

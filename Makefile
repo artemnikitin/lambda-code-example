@@ -21,7 +21,6 @@ show-coverage:
 build: clean
 		@mkdir -p build/
 		@./build.sh
-		@find build -type f ! -name '*.zip' -delete
 
 clean:
 		@rm -rf build/
