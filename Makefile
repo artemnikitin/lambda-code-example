@@ -1,4 +1,4 @@
-.PHONY: all lint test build clean show-coverage deps
+.PHONY: all lint test build clean show-coverage deps run-local
 
 all: clean deps lint test
 
@@ -24,3 +24,8 @@ build: clean
 
 clean:
 		@rm -rf build/
+
+run-local:
+		@sam local generate-event dynamodb update | sam local invoke
+
+

@@ -11,7 +11,13 @@ To run tests simply invoke `make`. It will run linters and unit tests.
 
 ### Run Lambda locally
 1) Install [AWS SAM CLI](https://github.com/awslabs/aws-sam-cli)
-2) Run:
+2) Run it:     
+
+via SAM CLI
 ```bash
 sam local generate-event dynamodb update | sam local invoke
+```
+or via make: 
+```bash
+make run-local
 ```
