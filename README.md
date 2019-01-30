@@ -21,3 +21,16 @@ or via make:
 ```bash
 make run-local
 ```
+
+### Deploy Lambda with Terraform
+1) Install [Terraform](https://learn.hashicorp.com/terraform/getting-started/install.html)
+2) Run it:
+
+via command line
+```bash
+terraform init & terraform apply -auto-approve
+```
+or via make: 
+```bash
+make tf-deploy
+```
