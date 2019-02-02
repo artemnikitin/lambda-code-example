@@ -4,3 +4,4 @@ build/
 coverage.out
 .terraform/
 *.tfstate*
+serverless-output.yaml

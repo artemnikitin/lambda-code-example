@@ -15,6 +15,7 @@ To run tests simply invoke `make`. It will run linters and unit tests.
 
 via SAM CLI
 ```bash
+make build 
 sam local generate-event dynamodb update | sam local invoke
 ```
 or via make: 
@@ -28,9 +29,32 @@ make run-local
 
 via command line
 ```bash
-terraform init & terraform apply -auto-approve
+make build & terraform init & terraform apply -auto-approve
 ```
 or via make: 
 ```bash
 make tf-deploy
+```
+
+### Deploy Lambda with AWS SAM CLI
+1) Install [AWS SAM CLI](https://github.com/awslabs/aws-sam-cli)
+2) Run it:     
+
+via SAM CLI
+```bash
+make build
+
+sam package \
+    --template-file template.yaml \
+    --output-template-file serverless-output.yaml \
+    --s3-bucket your-s3-bucket # put name of your S3 bucket here
+    
+sam deploy \
+    --template-file serverless-output.yaml \
+    --stack-name my-lambda-deployment \
+    --capabilities CAPABILITY_IAM
+```
+or via make: 
+```bash
+make sam-deploy
 ```

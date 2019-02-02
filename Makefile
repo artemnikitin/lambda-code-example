@@ -1,4 +1,4 @@
-.PHONY: all lint test build clean show-coverage deps run-local tf-deploy
+.PHONY: all lint test build clean show-coverage deps run-local tf-deploy sam-deploy
 
 all: clean deps lint test
 
@@ -25,12 +25,18 @@ build: clean
 clean:
 		@rm -rf build/
 
-run-local:
+run-local: build
 		@sam local generate-event dynamodb update | sam local invoke
 
 tf-deploy: build
 		@echo "Deploying Lambda via Terraform..."
 		@terraform init
 		@terraform apply -auto-approve
+
+# Put the name of your S3 bucket instead of `your-s3-bucket`
+sam-deploy: build
+		@echo "Deploying Lambda via SAM CLI..."
+		@sam package --template-file template.yaml --output-template-file serverless-output.yaml --s3-bucket your-s3-bucket
+		@sam deploy --template-file serverless-output.yaml --stack-name my-lambda-deployment --capabilities CAPABILITY_IAM
 
 

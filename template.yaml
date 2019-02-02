@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Example of using AWS SAM CLI for Lambda
+Description: Example of using AWS SAM CLI for Lambda deployment
 
 Resources:
   DynamoDBEvent:
@@ -12,16 +12,13 @@ Resources:
       Tracing: Active
       Description: An example of app which triggered by Amazon DynamoDB update
       MemorySize: 128
-      Timeout: 3
+      Timeout: 300
       Policies:
         - AWSConfigRulesExecutionRole
       Events:
         DynamoDB1:
           Type: DynamoDB
           Properties:
-            Stream:
-              'Fn::GetAtt':
-                - Table1
-                - StreamArn
+            Stream: stream-arn-goes-here # put here actual ARN of existed DynamoDB stream
             StartingPosition: TRIM_HORIZON
             BatchSize: 100
