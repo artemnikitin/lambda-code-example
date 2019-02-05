@@ -1,5 +1,5 @@
 provider "aws" {
-  region     = "us-east-1"
+  region = "us-east-1"
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
@@ -69,7 +69,7 @@ resource "aws_lambda_function" "lambda_deployment" {
 
 resource "aws_lambda_event_source_mapping" "event_source_mapping" {
   batch_size        = 100
-  event_source_arn  = "xyz" # put here actual ARN of existed DynamoDB stream
+  event_source_arn  = "xyz"                                                    # put here actual ARN of existed DynamoDB stream
   enabled           = true
   function_name     = "${aws_lambda_function.lambda_deployment.function_name}"
   starting_position = "TRIM_HORIZON"
