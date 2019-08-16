@@ -8,7 +8,7 @@ require (
 	github.com/prometheus/procfs v0.0.0-20190416084830-8368d24ba045 // indirect
 	github.com/santhosh-tekuri/jsonschema v1.2.4 // indirect
 	github.com/satori/go.uuid v1.2.0
-	github.com/stretchr/testify v1.3.0
+	github.com/stretchr/testify v1.4.0
 	go.elastic.co/apm/module/apmlambda v1.3.0
 	golang.org/x/sys v0.0.0-20190416152802-12500544f89f // indirect
 )
