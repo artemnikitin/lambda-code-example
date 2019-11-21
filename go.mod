@@ -2,7 +2,7 @@ module github.com/artemnikitin/delex-code-example
 
 require (
 	github.com/aws/aws-lambda-go v1.10.0
-	github.com/aws/aws-sdk-go-v2 v0.7.0
+	github.com/aws/aws-sdk-go-v2 v0.17.0
 	github.com/elastic/go-sysinfo v0.0.0-20190411102733-fd25fda1079a // indirect
 	github.com/pkg/errors v0.8.1 // indirect
 	github.com/prometheus/procfs v0.0.0-20190416084830-8368d24ba045 // indirect
