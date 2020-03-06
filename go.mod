@@ -9,6 +9,6 @@ require (
 	github.com/santhosh-tekuri/jsonschema v1.2.4 // indirect
 	github.com/satori/go.uuid v1.2.0
 	github.com/stretchr/testify v1.3.0
-	go.elastic.co/apm/module/apmlambda v1.3.0
+	go.elastic.co/apm/module/apmlambda v1.7.1
 	golang.org/x/sys v0.0.0-20190416152802-12500544f89f // indirect
 )
